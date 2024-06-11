@@ -1,0 +1,39 @@
+package templates
+
+import "fmt"
+
+templ Layout(title string, contents templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{ title }</title>
+		</head>
+		<body>
+			<main>
+				@contents
+			</main>
+		</body>
+	</html>
+}
+
+templ Index(title, status, message, ip, color string) {
+	<h1>{ title }</h1>
+	if ip != "" {
+		<h3>IP: { ip }</h3>
+	}
+	<h3>
+		Status: 
+		@Colored(status, color)
+	</h3>
+	<p>{ message }</p>
+}
+
+css coloredClass(color string) {
+	color: { color };
+}
+
+templ Colored(msg, color string) {
+	<span class={ coloredClass(color) }>{ msg }</span>
+}
