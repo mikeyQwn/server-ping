@@ -19,6 +19,9 @@ type Server struct {
 
 func New(log logger.Logger, uc internal.Usecase, pingAddress string) *Server {
 	e := echo.New()
+	e.HideBanner = true
+	e.HidePort = true
+
 	return &Server{
 		log:         log,
 		uc:          uc,

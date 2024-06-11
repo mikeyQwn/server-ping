@@ -27,6 +27,7 @@ func main() {
 
 	go func(s *delivery.Server) {
 		addr := fmt.Sprintf("%s:%d", cfg.Server.Host, cfg.Server.Port)
+		log.Infof("Server is running on %s", addr)
 		log.Fatal(s.Run(addr), "could not run the server")
 	}(s)
 
