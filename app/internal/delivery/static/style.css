@@ -1,0 +1,22 @@
+@font-face {
+    font-family: LiberationSans;
+    src: url(LiberationSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: LiberationSans;
+    src: url(LiberationSans-Bold.ttf);
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: LiberationSans;
+}
+
+body {
+    background: #120925;
+    color: #fff5ea;
+    font-size: 1.5rem;
+}

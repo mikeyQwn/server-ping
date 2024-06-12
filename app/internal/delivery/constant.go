@@ -10,5 +10,5 @@ const (
 	connectionErrorFormatMsg = "Could not connect due to: %s"
 
 	colorRed   = "#FF0000"
-	colorGreen = "#00FF00"
+	colorGreen = "#0A5C36"
 )

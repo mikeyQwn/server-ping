@@ -1,13 +1,13 @@
 package templates
 
-import "fmt"
-
 templ Layout(title string, contents templ.Component) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<link href="static/style.css" rel="stylesheet"/>
 			<title>{ title }</title>
 		</head>
 		<body>
@@ -19,15 +19,19 @@ templ Layout(title string, contents templ.Component) {
 }
 
 templ Index(title, status, message, ip, color string) {
-	<h1>{ title }</h1>
-	if ip != "" {
-		<h3>IP: { ip }</h3>
-	}
-	<h3>
-		Status: 
-		@Colored(status, color)
-	</h3>
-	<p>{ message }</p>
+	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100vw; height: 100vh; gap: 1.5rem">
+		<h1>{ title }</h1>
+		if ip != "" {
+			<h3>IP: { ip }</h3>
+		}
+		<h3>
+			Status: 
+			<span style="background-color: white; border-radius: 0.25rem; padding: 0.25rem">
+				@Colored(status, color)
+			</span>
+		</h3>
+		<p>{ message }</p>
+	</div>
 }
 
 css coloredClass(color string) {

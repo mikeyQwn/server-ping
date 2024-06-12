@@ -41,6 +41,7 @@ func (s *Server) MapHandlers() {
 	s.e.GET("/", s.handleIndex)
 	s.e.GET("/ping", s.handlePing)
 	s.e.GET("/healthcheck", s.handleHealthcheck)
+	s.e.Static("/static", "internal/delivery/static")
 }
 
 func (s *Server) handleIndex(ctx echo.Context) error {
