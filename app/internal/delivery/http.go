@@ -3,6 +3,7 @@ package delivery
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/labstack/echo"
 	models "github.com/mikeyQwn/server-ping"
@@ -15,11 +16,12 @@ type Server struct {
 	log         logger.Logger
 	uc          internal.Usecase
 	pingAddress string
+	hidePort    bool
 
 	e *echo.Echo
 }
 
-func New(log logger.Logger, uc internal.Usecase, pingAddress string) *Server {
+func New(log logger.Logger, uc internal.Usecase, pingAddress string, hidePort bool) *Server {
 	e := echo.New()
 	e.HideBanner = true
 	e.HidePort = true
@@ -28,6 +30,7 @@ func New(log logger.Logger, uc internal.Usecase, pingAddress string) *Server {
 		log:         log,
 		uc:          uc,
 		pingAddress: pingAddress,
+		hidePort:    hidePort,
 
 		e: e,
 	}
@@ -46,8 +49,15 @@ func (s *Server) MapHandlers() {
 
 func (s *Server) handleIndex(ctx echo.Context) error {
 	err := s.uc.CheckIsOnline(s.pingAddress)
-	statusMsg := statusOKMsg
-	statusDescription := okDescriptionMsg
+	addr := s.pingAddress
+	if s.hidePort {
+		split := strings.Split(s.pingAddress, ":")
+		if len(split) > 0 {
+			addr = split[0]
+		}
+	}
+	statusMsg := statusUPMsg
+	statusDescription := upDescriptionMsg
 	color := colorGreen
 
 	if err != nil {
@@ -56,7 +66,7 @@ func (s *Server) handleIndex(ctx echo.Context) error {
 		color = colorRed
 	}
 
-	index := templates.Index(serviceName, statusMsg, statusDescription, s.pingAddress, color)
+	index := templates.Index(serviceName, statusMsg, statusDescription, addr, color)
 	layout := templates.Layout(serviceName, index)
 	return Render(ctx, http.StatusOK, layout)
 }

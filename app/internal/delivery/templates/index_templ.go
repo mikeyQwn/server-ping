@@ -56,7 +56,7 @@ func Layout(title string, contents templ.Component) templ.Component {
 	})
 }
 
-func Index(title, status, message, ip, color string) templ.Component {
+func Index(title, status, message, address, color string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -86,15 +86,15 @@ func Index(title, status, message, ip, color string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if ip != "" {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h3>IP: ")
+		if address != "" {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h3>Address: ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
-			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(ip)
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(address)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/delivery/templates/index.templ`, Line: 25, Col: 15}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/delivery/templates/index.templ`, Line: 25, Col: 25}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {

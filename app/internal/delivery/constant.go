@@ -3,10 +3,10 @@ package delivery
 const (
 	serviceName = "Server Ping"
 
-	statusOKMsg   = "OK"
+	statusUPMsg   = "UP"
 	statusDOWNMsg = "DOWN"
 
-	okDescriptionMsg         = "Server is online"
+	upDescriptionMsg         = "Server is online"
 	connectionErrorFormatMsg = "Could not connect due to: %s"
 
 	colorRed   = "#FF0000"

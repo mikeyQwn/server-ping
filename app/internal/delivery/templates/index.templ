@@ -18,11 +18,11 @@ templ Layout(title string, contents templ.Component) {
 	</html>
 }
 
-templ Index(title, status, message, ip, color string) {
+templ Index(title, status, message, address, color string) {
 	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100vw; height: 100vh; gap: 1.5rem">
 		<h1>{ title }</h1>
-		if ip != "" {
-			<h3>IP: { ip }</h3>
+		if address != "" {
+			<h3>Address: { address }</h3>
 		}
 		<h3>
 			Status: 

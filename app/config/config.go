@@ -12,6 +12,7 @@ type Config struct {
 		Port uint   `yaml:"port"`
 	} `yaml:"server"`
 	PingAddress string `yaml:"ping_address"`
+	HidePort    bool   `yaml:"hide_port"`
 }
 
 //go:embed config.yaml
