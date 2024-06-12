@@ -6,9 +6,9 @@ import (
 	"strings"
 
 	"github.com/labstack/echo"
-	models "github.com/mikeyQwn/server-ping"
 	"github.com/mikeyQwn/server-ping/internal"
 	"github.com/mikeyQwn/server-ping/internal/delivery/templates"
+	"github.com/mikeyQwn/server-ping/internal/models"
 	"github.com/mikeyQwn/server-ping/pkg/logger"
 )
 
