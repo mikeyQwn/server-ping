@@ -13,6 +13,10 @@ type Config struct {
 	} `yaml:"server"`
 	PingAddress string `yaml:"ping_address"`
 	HidePort    bool   `yaml:"hide_port"`
+	TLS         struct {
+		Enabled        bool   `yaml:"enabled"`
+		CacheDirectory string `yaml:"cache_directory"`
+	} `yaml:"tls"`
 }
 
 //go:embed config.yaml

@@ -22,7 +22,7 @@ func main() {
 
 	uc := usecase.New()
 
-	s := delivery.New(log, uc, cfg.PingAddress, cfg.HidePort)
+	s := delivery.New(log, uc, cfg)
 	s.MapHandlers()
 
 	go func(s *delivery.Server) {
