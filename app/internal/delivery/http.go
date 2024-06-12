@@ -11,7 +11,6 @@ import (
 	"github.com/mikeyQwn/server-ping/internal/delivery/templates"
 	"github.com/mikeyQwn/server-ping/internal/models"
 	"github.com/mikeyQwn/server-ping/pkg/logger"
-	"golang.org/x/crypto/acme/autocert"
 )
 
 type Server struct {
@@ -26,6 +25,9 @@ func New(log logger.Logger, uc internal.Usecase, cfg config.Config) *Server {
 	e := echo.New()
 	e.HideBanner = true
 	e.HidePort = true
+	if cfg.TLS.Enabled {
+		e.Server.TLSConfig.ServerName = cfg.TLS.ServerName
+	}
 
 	return &Server{
 		log: log,

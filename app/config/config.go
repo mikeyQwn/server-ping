@@ -14,9 +14,10 @@ type Config struct {
 	PingAddress string `yaml:"ping_address"`
 	HidePort    bool   `yaml:"hide_port"`
 	TLS         struct {
-		Enabled  bool   `yaml:"enabled"`
-		CertFile string `yaml:"cert_file"`
-		KeyFile  string `yaml:"key_file"`
+		Enabled    bool   `yaml:"enabled"`
+		ServerName string `yaml:"server_name"`
+		CertFile   string `yaml:"cert_file"`
+		KeyFile    string `yaml:"key_file"`
 	} `yaml:"tls"`
 }
 
