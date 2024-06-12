@@ -26,9 +26,6 @@ func New(log logger.Logger, uc internal.Usecase, cfg config.Config) *Server {
 	e := echo.New()
 	e.HideBanner = true
 	e.HidePort = true
-	if cfg.TLS.Enabled {
-		e.AutoTLSManager.Cache = autocert.DirCache(cfg.TLS.CacheDirectory)
-	}
 
 	return &Server{
 		log: log,
@@ -44,7 +41,7 @@ func (s *Server) Run(addr string) error {
 		return s.e.StartAutoTLS(addr)
 	}
 
-	return s.e.Start(addr)
+	return s.e.StartTLS(addr, s.cfg.TLS.CertFile, s.cfg.TLS.KeyFile)
 }
 
 func (s *Server) MapHandlers() {
