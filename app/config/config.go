@@ -16,6 +16,7 @@ type Config struct {
 	TLS         struct {
 		Enabled        bool   `yaml:"enabled"`
 		CacheDirectory string `yaml:"cache_directory"`
+		ServerName     string `yaml:"server_name"`
 	} `yaml:"tls"`
 }
 
