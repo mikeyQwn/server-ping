@@ -1,12 +1,14 @@
 @font-face {
     font-family: LiberationSans;
-    src: url(LiberationSans-Regular.ttf);
+    src: local("LiberationSans"), url(LiberationSans-Regular.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: LiberationSans;
-    src: url(LiberationSans-Bold.ttf);
+    src: local("LiberationSans"), url(LiberationSans-Bold.ttf);
     font-weight: bold;
+    font-display: swap;
 }
 
 * {
