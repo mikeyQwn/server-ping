@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/a-h/templ"
 	"github.com/labstack/echo"
@@ -53,7 +54,8 @@ func (s *Server) MapHandlers() {
 	s.e.GET("/ping", s.handlePing)
 	s.e.GET("/healthcheck", s.handleHealthcheck)
 	s.e.GET("/poll", s.handlePoll)
-	s.e.Static("/static", "internal/delivery/static")
+	static := s.e.Group("/static", s.cacheMiddleware)
+	static.Static("", "internal/delivery/static")
 }
 
 func (s *Server) handleIndex(ctx echo.Context) error {
@@ -101,4 +103,13 @@ func (s *Server) getIndex() templ.Component {
 
 	index := templates.Index(serviceName, statusMsg, statusDescription, addr, color)
 	return index
+}
+
+func (s *Server) cacheMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		const MAX_AGE = time.Hour * 96
+		HEADER_TEMPLATE := fmt.Sprintf("max-age=%d", int(MAX_AGE.Seconds()))
+		c.Response().Header().Set("Cache-Control", HEADER_TEMPLATE)
+		return next(c)
+	}
 }
